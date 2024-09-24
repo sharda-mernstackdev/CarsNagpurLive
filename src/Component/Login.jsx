@@ -9,10 +9,10 @@ const Input = ({ className = '', ...props }) => (
   />
 );
 
-// Custom Button component
+// Custom Button component with orange styling
 const Button = ({ className = '', ...props }) => (
   <button
-    className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${className}`}
+    className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 ${className}`}
     {...props}
   />
 );
@@ -116,11 +116,11 @@ export function Login() {
         </div>
 
         {/* Right side - OTP Form */}
-        <div className="flex items-center justify-center w-full lg:w-1/2 p-8">
-          <div className="max-w-lg w-full space-y-8">
-            <div className="text-center">
-              <h2 className="mt-6 text-3xl font-extrabold text-gray-900">Log in to continue</h2>
-              <p className="mt-2 text-sm text-gray-600">Mobile number</p>
+        <div className="flex items-center justify-center w-full lg:w-1/2 p-8 ">
+          <div className="max-w-lg w-full space-y-8 h-[30px] -mb-[-189px]">
+            <div className="text-center -mt-[40px]">
+              <h2 className="mt-6 text-3xl font-extrabold text-blue-900">Log in to continue</h2>
+              <p className="mt-2 text-sm text-orange-600">Mobile number</p>
               {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
             </div>
             {!isPhoneSubmitted ? (
