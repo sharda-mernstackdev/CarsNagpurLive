@@ -26,6 +26,10 @@ const Dropdown = ({ label, items, isOpen, toggleDropdown }) => {
               <hr className="my-2 border-gray-200" />
             ) : item.type === 'header' ? (
               <h3 className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">{item.label}</h3>
+            ) : item.type === 'button' ? (
+              <button onClick={item.onClick} className={item.className}>
+                {item.label}
+              </button>
             ) : null
           )
         ))}
@@ -39,9 +43,13 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isAccountOpen, setIsAccountOpen] = useState(false);
   const [isPlacesOpen, setIsPlacesOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to manage login status
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const [location, setLocation] = useState('');
   const currentLocation = useLocation();
+
+  const handleCloseLoginModal = () => {
+    setShowLoginModal(false);
+  };
 
   const handleLocationClick = () => {
     if (navigator.geolocation) {
@@ -70,8 +78,8 @@ const Navbar = () => {
               <Link to="/" className="flex-shrink-0 flex items-center -ml-20">
                 <img src="./src/Img/carlogo4.png" alt="CarNagpur Logo" className="h-[65px] w-[250px] -ml-10" />
               </Link>
-              <div className="hidden lg:ml-4 lg:flex lg:space-x-8">
-                <Link to="/new-cars" className="text-blue-900 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium">New Cars</Link>
+              <div className="hidden lg:ml-4 lg:flex lg:space-x-8 ">
+                {/* <Link to="/new-cars" className="text-blue-900 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium">New Cars</Link> */}
                 <Link to="/used-cars" className="text-blue-900 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium">Used Cars</Link>
                 <Link to="/sell-car" className="text-blue-900 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium">Sell Your Car</Link>
 
@@ -121,31 +129,35 @@ const Navbar = () => {
                 }
                 isOpen={isAccountOpen}
                 toggleDropdown={() => setIsAccountOpen(!isAccountOpen)}
-                items={
-                  isLoggedIn
-                    ? [
-                        { type: 'header', label: 'My Activities' },
-                        { type: 'link', label: 'My Appointments', href: '/my-appointments', icon: Calendar, tag: 'SELL' },
-                        { type: 'link', label: 'My Bookings', href: '/my-bookings', icon: Book, tag: 'BUY' },
-                        { type: 'link', label: 'My Orders', href: '/my-orders', icon: Package },
-                        { type: 'separator' },
-                        { type: 'header', label: 'Account Management' },
-                        { type: 'link', label: 'Profile Settings', href: '/profile', icon: Settings },
-                        { type: 'link', label: 'RC Transfer Status', href: '/rc-transfer-status', icon: Clipboard },
-                        { type: 'separator' },
-                        { type: 'header', label: 'Resources' },
-                        { type: 'link', label: 'Help Center', href: '/help', icon: FileText },
-                        { type: 'link', label: 'FAQ', href: '/faq', icon: FileText },
-                        { type: 'separator' },
-                        { type: 'link', label: 'Sign Out', href: '/sign-out', icon: LogOut },
-                      ]
-                    : [
-                        { type: 'link', label: 'Login', href: '/login', icon: User },
-                        { type: 'link', label: 'Sign-Up', href: '/Sign-up', icon: User },
-                      ]
-                }
+                items={[
+                  {
+                    type: 'button',
+                    label: 'Log In/Sign Up',
+                    onClick: () => setShowLoginModal(true),
+                    className: 'block w-full text-center bg-orange-500 text-white py-2 rounded-md hover:bg-orange-600 focus:outline-none mb-2',
+                  },
+                  { type: 'header', label: 'My Activities' },
+                  { type: 'link', label: 'My Appointments', href: '/my-appointments', icon: Calendar, tag: 'SELL' },
+                  { type: 'link', label: 'My Bookings', href: '/my-bookings', icon: Book, tag: 'BUY' },
+                  { type: 'link', label: 'My Orders', href: '/my-orders', icon: Package },
+                  { type: 'separator' },
+                  { type: 'header', label: 'Account Management' },
+                  { type: 'link', label: 'Profile Settings', href: '/profile', icon: Settings },
+                  { type: 'link', label: 'RC Transfer Status', href: '/rc-transfer-status', icon: Clipboard },
+                  { type: 'separator' },
+                  { type: 'header', label: 'Resources' },
+                  { type: 'link', label: 'Help Center', href: '/help', icon: FileText },
+                  { type: 'link', label: 'FAQ', href: '/faq', icon: FileText },
+                  { type: 'separator' },
+                  { type: 'header', label: 'Partnerships' },
+                  { type: 'link', label: 'Become Our Partner', href: '/become-partner', icon: Users },
+                  { type: 'link', label: 'Become a CarNagpur Franchise', href: '/franchise', icon: Building },
+                  { type: 'separator' },
+                  { type: 'link', label: 'Sign Out', href: '/sign-out', icon: LogOut }
+                ]}
               />
 
+              
               {/* Location Button */}
               <button
                 onClick={handleLocationClick}
@@ -213,3 +225,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
