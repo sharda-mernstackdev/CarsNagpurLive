@@ -131,8 +131,10 @@ const Navbar = () => {
                 toggleDropdown={() => setIsAccountOpen(!isAccountOpen)}
                 items={[
                   {
-                    type: 'button',
+                    type: 'link',
+                    mode:'model',
                     label: 'Log In/Sign Up',
+                    href: '/login',
                     onClick: () => setShowLoginModal(true),
                     className: 'block w-full text-center bg-orange-500 text-white py-2 rounded-md hover:bg-orange-600 focus:outline-none mb-2',
                   },
