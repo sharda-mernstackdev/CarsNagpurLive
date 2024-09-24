@@ -119,8 +119,8 @@ const Navbar = () => {
                 <ShoppingCart className="h-6 w-6" />
               </Link>
 
-              {/* Account Dropdown */}
-              <Dropdown
+                           {/* Account Dropdown */}
+                           <Dropdown
                 label={
                   <div className="flex items-center">
                     <User className="h-6 w-6 mr-1" />
@@ -132,9 +132,9 @@ const Navbar = () => {
                 items={[
                   {
                     type: 'link',
-                    mode:'model',
                     label: 'Log In/Sign Up',
                     href: '/login',
+                    icon: User,  // Add User icon here
                     onClick: () => setShowLoginModal(true),
                     className: 'block w-full text-center bg-orange-500 text-white py-2 rounded-md hover:bg-orange-600 focus:outline-none mb-2',
                   },
