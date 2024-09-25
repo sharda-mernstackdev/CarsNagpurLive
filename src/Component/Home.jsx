@@ -48,7 +48,7 @@ export function Home() {
             <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 mb-6">
               {services.map((service, index) => (
                 <div key={index} className="flex flex-col items-center text-center">
-                  <div className="bg-gray-100 rounded-full p-3 mb-2">
+                  <div className="bg-black-100 rounded-full p-3 mb-2">
                     {service.icon}
                   </div>
                   <span className="text-gray-700 text-xs">{service.label}</span>
