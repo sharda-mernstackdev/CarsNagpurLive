@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Footer from './Component/Footer'
 
 import Home from './Component/Home'
+import UsedCars from './Component/UsedCars'
 
 
 function App() {
@@ -17,10 +18,17 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <Home/>
+     
       <Routes>
         <Route path="/login" element={<Login/>} />
-        
+      </Routes>
+
+      <Routes>
+        <Route path="/home" element={ <Home/>} />
+      </Routes>
+
+      <Routes>
+        <Route path="/usedcars" element={<UsedCars/>} />
       </Routes>
       <Footer/>
     </Router>

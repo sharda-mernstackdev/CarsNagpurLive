@@ -68,11 +68,11 @@ const Navbar = () => {
           <div className="flex justify-between h-20">
             {/* Logo Section */}
             <div className="flex items-center">
-              <Link to="/" className="flex-shrink-0 flex items-center -ml-20">
+              <Link to="/home" className="flex-shrink-0 flex items-center -ml-20">
                 <img src="./src/Img/carlogo4.png" alt="CarNagpur Logo" className="h-[65px] w-[250px] -ml-10" />
               </Link>
               <div className="hidden lg:ml-4 lg:flex lg:space-x-8">
-                <Link to="/used-cars" className="text-blue-900 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium">Used Cars</Link>
+                <Link to="/usedcars" className="text-blue-900 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium">Used Cars</Link>
                 <Link to="/sell-car" className="text-blue-900 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium">Sell Your Car</Link>
 
                 {/* Services Dropdown */}
