@@ -51,7 +51,7 @@ export function Login() {
 
     setLoading(true);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulating async operation
       setIsPhoneSubmitted(true);
       setError('');
     } catch (err) {
@@ -84,7 +84,7 @@ export function Login() {
 
     setLoading(true);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulating async operation
       console.log('OTP submitted:', otpValue);
       setError('');
     } catch (err) {
@@ -116,7 +116,7 @@ export function Login() {
         </div>
 
         {/* Right side - OTP Form */}
-        <div className="flex items-center justify-center w-full lg:w-1/2 p-8 ">
+        <div className="flex items-center justify-center w-full lg:w-1/2 p-8">
           <div className="max-w-lg w-full space-y-8 h-[30px] -mb-[-189px]">
             <div className="text-center -mt-[40px]">
               <h2 className="mt-6 text-3xl font-extrabold text-blue-900">Log in to continue</h2>
@@ -131,13 +131,25 @@ export function Login() {
                   type="tel"
                   autoComplete="tel"
                   required
-                  placeholder="+91-999 999 9999"
+                  placeholder="+91-  999 999 9999"
                   value={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value)}
                 />
                 <Button type="submit" disabled={loading}>
-                  {loading ? 'Sending...' : 'Get OTP'}
+                  {loading ? 'Sending...' : 'GET OTP'}
                 </Button>
+
+                {/* Terms and Conditions */}
+                <p className="text-sm text-gray-500 text-center mt-4">
+                  By logging in, you agree to CarsNagpur's{' '}
+                  <a href="/privacy-policy" className="underline text-blue-500 hover:text-blue-700">
+                    Privacy Policy
+                  </a>{' '}
+                  and{' '}
+                  <a href="/terms-conditions" className="underline text-blue-500 hover:text-blue-700">
+                    Terms & Conditions
+                  </a>.
+                </p>
               </form>
             ) : (
               <form className="mt-8 space-y-6" onSubmit={handleOtpSubmit}>
@@ -158,6 +170,18 @@ export function Login() {
                 <Button type="submit" disabled={loading}>
                   {loading ? 'Verifying...' : 'Verify OTP'}
                 </Button>
+
+                {/* Terms and Conditions */}
+                <p className="text-sm text-gray-500 text-center mt-4">
+                  By logging in, you agree to CarsNagpur's{' '}
+                  <a href="/privacy-policy" className="underline text-blue-500 hover:text-blue-700">
+                    Privacy Policy
+                  </a>{' '}
+                  and{' '}
+                  <a href="/terms-conditions" className="underline text-blue-500 hover:text-blue-700">
+                    Terms & Conditions
+                  </a>.
+                </p>
               </form>
             )}
           </div>
