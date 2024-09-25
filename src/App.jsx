@@ -5,6 +5,7 @@ import './App.css'
 import Navbar from './Component/Navbar'
 import Login from './Component/Login'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Footer from './Component/Footer'
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login/>} />
       </Routes>
+      <Footer/>
     </Router>
   )
 }
