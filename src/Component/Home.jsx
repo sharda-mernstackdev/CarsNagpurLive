@@ -4,7 +4,7 @@ const Home = () => {
   return (
     <section className="relative bg-gray-800 text-white">
       {/* Background Image */}
-      <div className="absolute inset-0 bg-cover bg-center opacity-80 mt-2 h-[600px]" 
+      <div className="absolute inset-0 bg-cover bg-center opacity-80 mt-2 h-[300px]" 
            style={{ backgroundImage: 'url("./src/Img/car.jpeg")' }}>
       </div>
       <div className="relative container mx-auto px-6 py-16 flex flex-col items-center text-center z-10">

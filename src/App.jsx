@@ -5,11 +5,11 @@ import './App.css'
 import Navbar from './Component/Navbar'
 import Login from './Component/Login'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-<<<<<<< HEAD
+
 import Footer from './Component/Footer'
-=======
+
 import Home from './Component/Home'
->>>>>>> e32ef54 (New message)
+
 
 function App() {
   // const [count, setCount] = useState(0)
