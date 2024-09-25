@@ -1,5 +1,6 @@
 import React from 'react'
 import { Search, Car, DollarSign, CreditCard, CheckCircle, AlertCircle, Grid } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 const carBrands = [
   { name: 'Maruti Suzuki', logo: '/placeholder.svg?height=30&width=60' },
@@ -28,7 +29,7 @@ export function Home() {
     <div className="bg-gray-900 text-white relative overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img
-          src="/placeholder.svg?height=1080&width=1920"
+          src={carBrands.logo}
         //   alt="Background"
           className="w-full h-full object-cover"
         />
@@ -38,7 +39,7 @@ export function Home() {
       <div className="container mx-auto px-4 py-8 relative z-10">
         <header className="mb-8">
           <div className="text-sm mb-2">Welcome to</div>
-          <div className="text-2xl font-bold bg-yellow-400 text-black inline-block px-2 py-1 rounded">CARS24</div>
+          <div className="text-2xl font-bold bg-yellow-400 text-black inline-block px-2 py-1 rounded">CARSNAGPUR</div>
         </header>
         
         <main>
@@ -70,9 +71,9 @@ export function Home() {
             {carBrands.map((brand, index) => (
               <img key={index} src={brand.logo} alt={brand.name} className="h-6 mb-4" />
             ))}
-            <button className="bg-white text-gray-800 px-4 py-2 rounded hover:bg-gray-100 transition-colors">
+            <Link to="/usedcars" className="bg-white text-gray-800 px-4 py-2 rounded hover:bg-gray-100 transition-colors">
               View all cars
-            </button>
+            </Link>
           </div>
         </main>
       </div>
