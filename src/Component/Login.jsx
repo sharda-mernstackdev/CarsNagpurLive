@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { X } from 'lucide-react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-// Custom Input component
 const Input = ({ className = '', ...props }) => (
   <input
     className={`appearance-none rounded-md block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm ${className}`}
@@ -9,7 +10,6 @@ const Input = ({ className = '', ...props }) => (
   />
 );
 
-// Custom Button component with orange styling
 const Button = ({ className = '', ...props }) => (
   <button
     className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 ${className}`}
@@ -41,6 +41,7 @@ export function Login() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(true);
+  const navigate= useNavigate();
 
   const handlePhoneSubmit = async (e) => {
     e.preventDefault();
@@ -51,9 +52,11 @@ export function Login() {
 
     setLoading(true);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const response = await axios.post('http://localhost:5000/api/send-otp', { phoneNumber });
       setIsPhoneSubmitted(true);
       setError('');
+      console.log(response);
+      
     } catch (err) {
       setError('Failed to send OTP. Please try again.');
     } finally {
@@ -84,9 +87,11 @@ export function Login() {
 
     setLoading(true);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      console.log('OTP submitted:', otpValue);
+      const response = await axios.post('http://localhost:5000/api/verify-otp', { phoneNumber, otp: otpValue });
+      console.log('OTP verified:', response.data);
       setError('');
+      // Handle successful login here (e.g., store token, redirect user)
+      navigate("/home")
     } catch (err) {
       setError('Invalid OTP. Please try again.');
     } finally {
@@ -106,7 +111,6 @@ export function Login() {
   return (
     <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
       <div className="flex flex-col lg:flex-row bg-white">
-        {/* Left side - Image */}
         <div className="hidden lg:flex lg:w-1/2 bg-cover bg-center h-[340px] -mt-[56px]" style={{ backgroundImage: "url('https://media.istockphoto.com/id/1401715786/photo/happy-family-piggybacking-after-buying-a-new-car-in-a-showroom.jpg?s=612x612&w=0&k=20&c=hnNdjcrSmKQAsP4A7KFU_BWrJVMk2evUxaViNdo_LZA=')" }}>
           <div className="flex items-center h-full w-full bg-gray-900 bg-opacity-40">
             <div className="text-white px-20">
@@ -115,7 +119,6 @@ export function Login() {
           </div>
         </div>
 
-        {/* Right side - OTP Form */}
         <div className="flex items-center justify-center w-full lg:w-1/2 p-8 ">
           <div className="max-w-lg w-full space-y-8 h-[30px] -mb-[-189px]">
             <div className="text-center -mt-[40px]">
