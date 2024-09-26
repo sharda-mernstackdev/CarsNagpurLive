@@ -13,14 +13,15 @@ function CarsData() {
       <div className="grid md:grid-cols-2 gap-6">
         {/* Image Section */}
         <div className="space-y-4">
-          <div className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden h-[570px] ">
+          <div className="relative aspect-square bg-gray-200 rounded-lg  h-[560px] ">
             <img
               src="/src/assets/tata.jpg"
               alt="2022 Tata Harrier XT PLUS 2.0L"
               layout="fill"
               objectFit="cover"
+              
             />
-            <span className="absolute bottom-2 left-2 bg-gray-800 bg-opacity-75 text-white px-2 py-1 text-sm rounded">
+            <span className="absolute bottom-2 left-2 bg-gray-800 bg-opacity-75 text-white px-2  text-sm rounded">
               1 / 12
             </span>
           </div>

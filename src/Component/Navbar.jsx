@@ -97,6 +97,9 @@ const Navbar = () => {
               </div>
             </div>
 
+
+
+
             {/* Right Section with Icons */}
             <div className="hidden lg:ml-6 lg:flex lg:items-center space-x-4 -mr-[130px]">
               <button className="p-2 rounded-full text-blue-800 hover:text-orange-600 focus:outline-none">
