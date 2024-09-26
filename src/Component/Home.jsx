@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   return (
-    <section className="relative bg-gray-800 text-white">
+    <section className="relative bg-gray-800 text-white h-[450px]">
       {/* Background Image */}
-      <div className="absolute inset-0 bg-cover bg-center opacity-80 mt-2 h-[300px]" 
+      <div className="absolute inset-0 bg-cover bg-center opacity-40 mt-2 h-[440px]" 
            style={{ backgroundImage: 'url("./src/Img/car.jpeg")' }}>
       </div>
       <div className="relative container mx-auto px-6 py-16 flex flex-col items-center text-center z-10">
@@ -25,9 +26,9 @@ const Home = () => {
 
         {/* Action Buttons */}
         <div className="flex space-x-4">
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full">
+          <Link to="/usedcars" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full">
             Buy used car
-          </button>
+          </Link>
           <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full">
             Sell car
           </button>
