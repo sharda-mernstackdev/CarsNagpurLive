@@ -16,7 +16,7 @@ function UsedCars({
   testDriveLocation = "M3M Urbana, Golf Course"
 }) {
   return (
-    <div className="w-[300px] h-[380px] bg-white rounded-lg shadow-md overflow-hidden m-8">
+    <div className="w-[300px] h-[380px] bg-white rounded-lg shadow-md overflow-hidden m-8 ">
     <div className="relative">
       <img src="/src/assets/tata.jpg" alt={`${make} ${model} || hai re bhai image hai ruk thoda on the way hai `} className="w-full h-48 object-cover" />
       <button className="absolute top-2 right-2 p-1 bg-white rounded-full shadow-md">
