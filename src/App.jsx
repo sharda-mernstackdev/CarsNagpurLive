@@ -18,13 +18,13 @@ function App() {
   return (
     <Router>
       <Navbar />
-     
+      
       <Routes>
         <Route path="/login" element={<Login/>} />
       </Routes>
 
       <Routes>
-        <Route path="/home" element={ <Home/>} />
+        <Route path="/home" element={<Home/>} />
       </Routes>
 
       <Routes>
