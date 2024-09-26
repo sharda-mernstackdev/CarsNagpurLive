@@ -31,9 +31,9 @@ export function Home() {
         <img
           src={carBrands.logo}
         //   alt="Background"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover "
         />
-        <div className="absolute inset-0 bg-gray-900 bg-opacity-70"></div>
+        <div className="absolute inset-0 bg-gray-900 bg-opacity-70 mt-[160px]"></div>
       </div>
 
       <div className="container mx-auto px-4 py-8 relative z-10">

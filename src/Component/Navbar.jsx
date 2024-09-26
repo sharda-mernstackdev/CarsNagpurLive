@@ -6,9 +6,7 @@ import { BrowserRouter as Router, Link, useLocation } from 'react-router-dom';
 const Dropdown = ({ label, items }) => {
   return (
     <div className="relative group">
-      <button
-        className="text-blue-900 group-hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium inline-flex items-center"
-      >
+      <button className="text-blue-900 group-hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
         {label}
         <ChevronDown className="ml-1 h-4 w-4" />
       </button>
@@ -16,7 +14,7 @@ const Dropdown = ({ label, items }) => {
       {/* Dropdown menu */}
       <div className="absolute right-0 mt-2 w-64 bg-white rounded-md shadow-lg py-1 z-10 opacity-0 group-hover:opacity-100 group-hover:visible invisible group-hover:block transition-all duration-300">
         {items.map((item, index) => (
-          React.createElement(React.Fragment, { key: index }, 
+          React.createElement(React.Fragment, { key: index },
             item.type === 'link' ? (
               <Link to={item.href} className="flex items-center px-4 py-2 text-sm text-blue-800 hover:bg-orange-100">
                 {item.icon && <item.icon className="mr-3 h-5 w-5 text-blue-600" />}
@@ -39,7 +37,7 @@ const Dropdown = ({ label, items }) => {
   );
 };
 
-// Navbar Component
+// Navbar Component with Fixed Position
 const Navbar = () => {
   const [location, setLocation] = useState('');
   const currentLocation = useLocation();
@@ -63,7 +61,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="bg-orange-50 shadow-lg">
+      <nav className="bg-orange-50 shadow-lg fixed top-0 left-0 w-full z-50"> {/* Changed to fixed */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-20">
             {/* Logo Section */}
