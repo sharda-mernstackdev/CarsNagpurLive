@@ -10,6 +10,8 @@ import Footer from './Component/Footer'
 
 import Home from './Component/Home'
 import UsedCars from './Component/UsedCars'
+import AllCars from './Component/AllCars'
+import CarsData from './Component/CarsData'
 
 
 function App() {
@@ -28,7 +30,11 @@ function App() {
       </Routes>
 
       <Routes>
-        <Route path="/usedcars" element={<UsedCars/>} />
+        <Route path="/usedcars" element={<AllCars/>} />
+      </Routes>
+
+      <Routes>
+        <Route path="/cardetails" element={<CarsData/>} />
       </Routes>
       <Footer/>
     </Router>
