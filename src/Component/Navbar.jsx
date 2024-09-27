@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Link, useLocation } from 'react-router-dom';
 // Reusable Dropdown Component
 const Dropdown = ({ label, items }) => {
   return (
-    <div className="relative group">
+    <div className="relative group ">
       <button className="text-blue-900 group-hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
         {label}
         <ChevronDown className="ml-1 h-4 w-4" />
@@ -61,7 +61,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="bg-orange-50 shadow-lg fixed top-0 left-0 w-full z-50"> {/* Changed to fixed */}
+      <nav className="bg-orange-50 shadow-lg sticky top-0 left-0 w-full z-50"> {/* Changed to fixed */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-20">
             {/* Logo Section */}
@@ -96,6 +96,9 @@ const Navbar = () => {
                 />
               </div>
             </div>
+
+
+
 
             {/* Right Section with Icons */}
             <div className="hidden lg:ml-6 lg:flex lg:items-center space-x-4 -mr-[130px]">

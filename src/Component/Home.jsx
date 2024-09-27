@@ -1,83 +1,192 @@
-import React from 'react'
-import { Search, Car, DollarSign, CreditCard, CheckCircle, AlertCircle, Grid } from 'lucide-react'
-import { Link } from 'react-router-dom'
-
-const carBrands = [
-  { name: 'Maruti Suzuki', logo: '/placeholder.svg?height=30&width=60' },
-  { name: 'Hyundai', logo: '/placeholder.svg?height=30&width=60' },
-  { name: 'Honda', logo: '/placeholder.svg?height=30&width=60' },
-  { name: 'Tata', logo: '/placeholder.svg?height=30&width=60' },
-  { name: 'Renault', logo: '/placeholder.svg?height=30&width=60' },
-  { name: 'Mahindra', logo: '/placeholder.svg?height=30&width=60' },
-  { name: 'Ford', logo: '/placeholder.svg?height=30&width=60' },
-  { name: 'Kia', logo: '/placeholder.svg?height=30&width=60' },
-]
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { RiContractLeftFill } from "react-icons/ri";
+import { RiContractRightFill } from "react-icons/ri";
 
 const services = [
-  { icon: <Car className="w-6 h-6" />, label: 'Buy used car' },
-  { icon: <DollarSign className="w-6 h-6" />, label: 'Sell car' },
-  { icon: <Car className="w-6 h-6" />, label: 'New car' },
-  { icon: <CreditCard className="w-6 h-6" />, label: 'Car loan' },
-  { icon: <CreditCard className="w-6 h-6" />, label: 'Credit card' },
-  { icon: <CheckCircle className="w-6 h-6" />, label: 'Get car checked' },
-  { icon: <AlertCircle className="w-6 h-6" />, label: 'Pay challan' },
-  { icon: <Grid className="w-6 h-6" />, label: 'More' },
+  {
+    title: 'Car loan',
+    description: 'Low rates, fast approval',
+    image: '/placeholder.svg?height=200&width=300',
+  },
+  {
+    title: 'Hire driver',
+    description: 'Expert drivers on demand',
+    image: '/placeholder.svg?height=200&width=300',
+  },
+  {
+    title: 'New car',
+    description: 'Discover the newest cars',
+    image: '/assets/tata.jp?height=200&width=300',
+  },
+  {
+    title: 'Pay charges',
+    description: 'Settle charges easily',
+    image: '/placeholder.svg?height=200&width=300',
+  },
 ]
 
-export function Home() {
-  return (
-    <div className="bg-gray-900 text-white relative overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        <img
-          src={carBrands.logo}
-        //   alt="Background"
-          className="w-full h-full object-cover "
-        />
-        <div className="absolute inset-0 bg-gray-900 bg-opacity-70 mt-[160px]"></div>
-      </div>
 
-      <div className="container mx-auto px-4 py-8 relative z-10">
-        <header className="mb-8">
-          <div className="text-sm mb-2">Welcome to</div>
-          <div className="text-2xl font-bold bg-yellow-400 text-black inline-block px-2 py-1 rounded">CARSNAGPUR</div>
-        </header>
-        
-        <main>
-          <h1 className="text-4xl font-bold mb-8">Your all-in-one car universe</h1>
-          
-          <div className="bg-white bg-opacity-90 rounded-lg p-6 mb-8 shadow-lg">
-            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 mb-6">
-              {services.map((service, index) => (
-                <div key={index} className="flex flex-col items-center text-center">
-                  <div className="bg-black-100 rounded-full p-3 mb-2">
-                    {service.icon}
-                  </div>
-                  <span className="text-gray-700 text-xs">{service.label}</span>
-                </div>
-              ))}
+const Home = () => {
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % services.length)
+  }
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + services.length) % services.length)
+  }
+  return (
+    <section className="relative bg-gray-800 text-white h-[450px]">
+      {/* Background Image */}
+      <div className="absolute inset-0 bg-cover bg-center opacity-40 mt-2 h-[440px]" 
+           style={{ backgroundImage: 'url("./src/Img/car.jpeg")' }}>
+      </div>
+      <div className="relative container mx-auto px-6 py-16 flex flex-col items-center text-center z-10">
+        {/* Headline */}
+        <h1 className="text-5xl font-bold mb-6">Your all-in-one car universe</h1>
+  
+        {/* Subtext */}
+        <p className="text-xl mb-8">Buy, sell, finance, and more—everything at one place.</p>
+
+        {/* Search Bar */}
+        <div className="relative w-full max-w-lg mb-8">
+          <input
+            type="text"
+            placeholder="Search cars by fuel"
+            className="w-full py-3 px-4 rounded-full bg-white text-black placeholder-gray-500 focus:outline-none"
+          />
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex space-x-4">
+          <Link to="/usedcars" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full">
+            Buy used car
+          </Link>
+          <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full">
+            Sell car
+          </button>
+          <button className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-full">
+            New car
+          </button>
+        </div>
+      </div>
+      <div className="container mx-auto px-4 py-8">
+      <h2 className="text-4xl font-bold mb-6">Our services</h2>
+      <div className="relative">
+        <div className="flex overflow-hidden">
+          {services.map((service, index) => (
+            <div
+              key={index}
+              className={`w-full flex-shrink-0 transition-transform duration-300 ease-in-out ${
+                index === currentIndex ? 'translate-x-0' : 'translate-x-full'
+              }`}
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            >
+              <div className="bg-white rounded-lg shadow-md p-6 m-2">
+                {/* <img src={service.image} alt={service.title} className="w-full h-48 object-cover rounded-md mb-4" /> */}
+                <img src="/src/assets/tata.jpg" alt={service.title} className="w-full h-48 object-cover rounded-md mb-4" />
+                <h3 className="text-2xl font-semibold mb-2">{service.title}</h3>
+                <p className="text-gray-600 mb-4">{service.description}</p>
+                <button className="bg-orange-100 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-200 transition-colors">
+                  Know more →
+                </button>
+              </div>
             </div>
-            
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search cars by model"
-                className="w-full p-2 pl-10 border border-gray-300 rounded"
-              />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-            </div>
-          </div>
-          
-          <div className="flex flex-wrap justify-between items-center">
-            {carBrands.map((brand, index) => (
-              <img key={index} src={brand.logo} alt={brand.name} className="h-6 mb-4" />
-            ))}
-            <Link to="/usedcars" className="bg-white text-gray-800 px-4 py-2 rounded hover:bg-gray-100 transition-colors">
-              View all cars
-            </Link>
-          </div>
-        </main>
+          ))}
+        </div>
+        <button
+          onClick={prevSlide}
+          className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md"
+        >
+          <RiContractLeftFill className="w-6 h-6" />
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md"
+        >
+          <RiContractRightFill className="w-6 h-6" />
+        </button>
       </div>
     </div>
-  )
-}
+    </section>
+
+
+
+    // **drive away deals**
+
+    const deals = [
+      {
+        type: 'Buy Car',
+        title: 'Get up to',
+        subtitle: '₹1.8 lakhs Off',
+        description: 'on selected cars',
+        cta: 'View offers',
+        bgColor: 'bg-blue-100',
+        image: '/placeholder.svg?height=150&width=150',
+      },
+      {
+        type: 'Buy Car',
+        title: 'Opt for',
+        subtitle: 'EMI offers',
+        description: 'save up to ₹2,500/m',
+        cta: 'View offers',
+        bgColor: 'bg-pink-100',
+        image: '/placeholder.svg?height=150&width=150',
+      },
+      {
+        type: 'Buy Car',
+        title: 'Exchange',
+        subtitle: 'your car',
+        description: 'Get up to ₹20000 OFF',
+        cta: 'View offers',
+        bgColor: 'bg-orange-100',
+        image: '/placeholder.svg?height=150&width=150',
+      },
+      {
+        type: 'AUTOPILOT',
+        title: 'Flat 100',
+        subtitle: '₹OFF',
+        description: 'on your first ride',
+        cta: 'Book ride',
+        bgColor: 'bg-gray-800',
+        image: '/placeholder.svg?height=150&width=150',
+      },
+    ]
+    
+    export default function DrivewayDeals() {
+      return (
+        <div className="p-4 md:p-8">
+          <h2 className="text-3xl font-bold mb-6">Driveway deals</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {deals.map((deal, index) => (
+              <div
+                key={index}
+                className={`${deal.bgColor} rounded-lg overflow-hidden shadow-md flex flex-col justify-between`}
+              >
+                <div className="p-4">
+                  <p className="text-sm font-semibold mb-2">{deal.type}</p>
+                  <h3 className="text-xl font-bold mb-1">{deal.title}</h3>
+                  <p className="text-2xl font-bold mb-2">{deal.subtitle}</p>
+                  <p className="text-sm mb-4">{deal.description}</p>
+                  <button className="bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition duration-300">
+                    {deal.cta} →
+                  </button>
+                </div>
+                <div className="mt-auto">
+                  <img src={deal.image} alt="" className="w-full h-auto" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+    }
+  
+};
+
+
 export default Home;
+
+
