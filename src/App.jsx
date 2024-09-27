@@ -46,7 +46,9 @@ function App() {
         <Route path="/usedcars" element={<AllCars/>} />
       </Routes>
 
-    
+      <Routes>
+        <Route path="/cardetails" element={<CarsData/>} />
+      </Routes>
 
       <Routes>
         <Route path="/financing" element={<Financing/>} />
@@ -60,10 +62,8 @@ function App() {
         <Route path="/vehicle-history" element={<VehicleHistory/>} />
       </Routes>
 
-      <Routes>
-        <Route path="/cardetails" element={<CarsData/>} />
-      </Routes>
-
+    
+    
       <Routes>
         <Route path="/trade-in" element={<TradeInVlaue/>} />
       </Routes>
@@ -104,7 +104,7 @@ function App() {
 
 
 
-      <Footer/>
+      {/* <Footer/> */}
     </Router>
    
   )
