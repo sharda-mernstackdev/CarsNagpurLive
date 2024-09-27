@@ -23,15 +23,14 @@ import TestDriveLocation from './Component/TestDriveLocation'
 import MyAppointment from './Component/MyAppointment'
 import MyBooking from './Component/MyBooking'
 import BecomePartner from './Component/BecomePartner'
-import MyOrder from './Component/MyOrder'
-import ProfileSettings from './Component/ProfileSetting'
 
 
 function App() {
   // const [count, setCount] = useState(0)
 
   return (
-    <Router>
+   
+    <Router >
       <Navbar />
       
       <Routes>
@@ -97,6 +96,9 @@ function App() {
       </Routes>
 
 
+      <Routes>
+        <Route path="/cart" element={<AddToCart/>} />
+      </Routes>
 
       <Routes>
         <Route path="/my-orders" element={<MyOrder/>} />
@@ -107,9 +109,9 @@ function App() {
       </Routes> */}
 
 
-
-      <Footer/>
+      {/* <Footer/> */}
     </Router>
+   
   )
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import UsedCars from './UsedCars';
-import { Link } from 'react-router-dom';
+
 
 function AllCars() {
   return (
@@ -9,8 +9,9 @@ function AllCars() {
       (() => {
         const carsArray = [];
         // const items = [1, 2];
-        for (let index = 0; index < 20; index++) {
-          carsArray.push(<Link to="/cardetails"><UsedCars key={index} /></Link>);
+        for (let index = 0; index < 1; index++) {
+          // carsArray.push(<Link to="/cardetails"><UsedCars key={index} /></Link>);
+          carsArray.push(<UsedCars key={index} />);
         }
         return carsArray;
       })()
