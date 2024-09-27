@@ -23,6 +23,8 @@ import TestDriveLocation from './Component/TestDriveLocation'
 import MyAppointment from './Component/MyAppointment'
 import MyBooking from './Component/MyBooking'
 import BecomePartner from './Component/BecomePartner'
+import MyOrder from './Component/MyOrder'
+import ProfileSettings from './Component/ProfileSetting'
 
 
 function App() {
@@ -96,7 +98,13 @@ function App() {
 
 
 
+      <Routes>
+        <Route path="/my-orders" element={<MyOrder/>} />
+      </Routes>
 
+      {/* <Routes>
+        <Route path="/profile" element={<ProfileSettings/>} />
+      </Routes> */}
 
 
 
