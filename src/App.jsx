@@ -23,13 +23,15 @@ import TestDriveLocation from './Component/TestDriveLocation'
 import MyAppointment from './Component/MyAppointment'
 import MyBooking from './Component/MyBooking'
 import BecomePartner from './Component/BecomePartner'
+import AddToCart from './Component/AddToCart'
 
 
 function App() {
   // const [count, setCount] = useState(0)
 
   return (
-    <Router>
+   
+    <Router >
       <Navbar />
       
       <Routes>
@@ -44,9 +46,7 @@ function App() {
         <Route path="/usedcars" element={<AllCars/>} />
       </Routes>
 
-      <Routes>
-        <Route path="/cardetails" element={<CarsData/>} />
-      </Routes>
+    
 
       <Routes>
         <Route path="/financing" element={<Financing/>} />
@@ -97,13 +97,16 @@ function App() {
       </Routes>
 
 
-
+      <Routes>
+        <Route path="/cart" element={<AddToCart/>} />
+      </Routes>
 
 
 
 
       <Footer/>
     </Router>
+   
   )
 }
 
