@@ -44,11 +44,8 @@ function App() {
         <Route path="/usedcars" element={<AllCars/>} />
       </Routes>
 
-<<<<<<< HEAD
-      
-=======
-    
->>>>>>> origin/main
+
+
 
       <Routes>
         <Route path="/financing" element={<Financing/>} />
