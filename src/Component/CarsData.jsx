@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaRegHeart } from 'react-icons/fa';
+import { FaHeart } from "react-icons/fa";
 
 function CarsData() {
   const [showModal, setShowModal] = useState(false);
@@ -7,6 +8,8 @@ function CarsData() {
   const toggleModal = () => {
     setShowModal(!showModal);
   };
+
+  const [click,setClick]=useState(true)
 
   return (
     <div className="container mx-auto py-4">
@@ -75,8 +78,16 @@ function CarsData() {
             <button className="flex-grow bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-600 transition duration-300">
               BOOK FREE TEST DRIVE
             </button>
-            <button className="p-2 border border-gray-300 rounded-md hover:bg-gray-100 transition duration-300">
-              <FaRegHeart className="h-6 w-6" />
+            <button onClick={()=>setClick((preve)=>!preve)} className="p-2 border border-gray-300 rounded-md hover:bg-gray-100 transition duration-300">
+            {
+          
+          click ? (
+          <FaRegHeart className="w-8 h-8 " />
+
+        ): (
+          <FaHeart className="w-8 h-8   text-red-500"/>
+        )
+        }
             </button>
           </div>
         </div>
@@ -94,13 +105,13 @@ function CarsData() {
             </div>
             <div className="mb-4">
               <p className="text-sm text-gray-500">
-                <strong>CAR24 Hub, M3M Urbana, Gurugram</strong>
+                <strong>CARSNAGPUR Hub, Sakkardara, Nagpur</strong>
               </p>
-              <p className="text-sm text-gray-500">Time: 11:00 AM - 08:00 PM</p>
+              {/* <p className="text-sm text-gray-500">Time: 11:00 AM - 08:00 PM</p> */}
               <p className="text-sm text-gray-500">
               525 hanuman nagr professor colony Nagpur-440023
               </p>
-              <button >
+              <button className=' bg-orange-400 mt-3 rounded-lg outline-none p-1 '>
                 <a href="https://maps.app.goo.gl/ZXqK8AA7tQTETxUAA">
                 LOCATE HUB 
                 </a>

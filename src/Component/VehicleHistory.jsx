@@ -54,4 +54,4 @@ const VehicleHistory = () => {
   );
 };
 
-export default VehicleHistory;
+export default VehicleHistory

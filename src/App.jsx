@@ -23,15 +23,15 @@ import TestDriveLocation from './Component/TestDriveLocation'
 import MyAppointment from './Component/MyAppointment'
 import MyBooking from './Component/MyBooking'
 import BecomePartner from './Component/BecomePartner'
-import MyOrder from './Component/MyOrder'
 
 
 function App() {
   // const [count, setCount] = useState(0)
 
   return (
-    <Router>
-      <Navbar />
+   
+    <Router >
+      <Navbar/>
       
       <Routes>
         <Route path="/login" element={<Login/>} />
@@ -41,7 +41,7 @@ function App() {
         <Route path="/home" element={<Home/>} />
       </Routes>
 
-      <Routes>
+      {/* <Routes>
         <Route path="/usedcars" element={<AllCars/>} />
       </Routes>
 
@@ -59,10 +59,8 @@ function App() {
         <Route path="/vehicle-history" element={<VehicleHistory/>} />
       </Routes>
 
-      <Routes>
-        <Route path="/cardetails" element={<CarsData/>} />
-      </Routes>
-
+    
+    
       <Routes>
         <Route path="/trade-in" element={<TradeInVlaue/>} />
       </Routes>
@@ -95,16 +93,20 @@ function App() {
         <Route path="/become-partner" element={<BecomePartner/>} />
       </Routes>
 
+
+
       <Routes>
         <Route path="/my-orders" element={<MyOrder/>} />
       </Routes>
 
-
-
+      {/* <Routes>
+        <Route path="/profile" element={<ProfileSettings/>} />
+      </Routes> */}
 
 
       <Footer/>
     </Router>
+   
   )
 }
 
