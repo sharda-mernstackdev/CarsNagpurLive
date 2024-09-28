@@ -23,6 +23,7 @@ import TestDriveLocation from './Component/TestDriveLocation'
 import MyAppointment from './Component/MyAppointment'
 import MyBooking from './Component/MyBooking'
 import BecomePartner from './Component/BecomePartner'
+import MyOrder from './Component/MyOrder'
 
 
 function App() {
@@ -93,7 +94,9 @@ function App() {
         <Route path="/become-partner" element={<BecomePartner/>} />
       </Routes>
 
-
+      <Routes>
+        <Route path="/my-orders" element={<MyOrder/>} />
+      </Routes>
 
       <Routes>
         <Route path="/my-orders" element={<MyOrder/>} />

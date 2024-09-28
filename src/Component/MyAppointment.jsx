@@ -155,8 +155,4 @@ export function MyAppointment() {
   );
 }
 
-<<<<<<< HEAD
-export default MyAppointment;
-=======
-export default MyAppointment;
->>>>>>> 249a93c7e9e90b7d26f1670c65110294bd243bc8
+export default MyAppointment

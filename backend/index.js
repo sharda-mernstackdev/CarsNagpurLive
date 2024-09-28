@@ -76,6 +76,7 @@ app.post('/api/verify-otp', async (req, res) => {
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on  port ${PORT}`))
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 
@@ -107,4 +108,9 @@ app.listen(PORT, () => console.log(`Server running on  port ${PORT}`))
 >>>>>>> 1bf3fb5 (modify and add files)
 >>>>>>> 81ccd4f99fb31f399a91c606ae1766d46280b992
 >>>>>>> 249a93c7e9e90b7d26f1670c65110294bd243bc8
+=======
+
+
+
+>>>>>>> fa7d5aa (modify files)
 

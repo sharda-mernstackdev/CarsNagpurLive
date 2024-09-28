@@ -270,8 +270,7 @@ export function MyBooking() {
   )
 }
 
-<<<<<<< HEAD
+
 export default MyBooking;
-=======
-export default MyBooking;
->>>>>>> 249a93c7e9e90b7d26f1670c65110294bd243bc8
+
+
