@@ -23,6 +23,8 @@ import TestDriveLocation from './Component/TestDriveLocation'
 import MyAppointment from './Component/MyAppointment'
 import MyBooking from './Component/MyBooking'
 import BecomePartner from './Component/BecomePartner'
+import AddToCart from './Component/AddToCart'
+import MyOrder from './Component/MyOrder'
 
 
 function App() {
@@ -31,7 +33,7 @@ function App() {
   return (
    
     <Router >
-      <Navbar />
+      <Navbar/>
       
       <Routes>
         <Route path="/login" element={<Login/>} />
@@ -41,13 +43,13 @@ function App() {
         <Route path="/home" element={<Home/>} />
       </Routes>
 
-      <Routes>
+      {/* <Routes>
         <Route path="/usedcars" element={<AllCars/>} />
-      </Routes>
-
+      </Routes> */}
+{/* 
       <Routes>
         <Route path="/cardetails" element={<CarsData/>} />
-      </Routes>
+      </Routes> */}
 
       <Routes>
         <Route path="/financing" element={<Financing/>} />

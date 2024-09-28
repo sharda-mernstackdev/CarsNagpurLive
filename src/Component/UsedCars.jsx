@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Cars from "./Cars";
-import AllCars from "./AllCars";
+
 
 
 function UsedCars({
