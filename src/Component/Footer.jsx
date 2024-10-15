@@ -3,11 +3,20 @@ import { FaFacebookF, FaTwitter, FaYoutube, FaLinkedinIn, FaInstagram } from 're
 
 function Footer() {
   return (
-    <div>
-      <footer className="bg-white text-gray-800 py-8">
+    <div className='bg-gray-300'>
+      <footer
+        className="bg-gray-200 text-gray-800 py-8 relative"
+        style={{
+          backgroundImage: "url('./public/Img/footerbg.png')", // Replace with your background image path
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        
         <div className="container mx-auto px-4">
+          
           <div className="flex justify-center mb-8">
-            <img src="./src/Img/carlogo4.png" alt="CarsNagpur Logo" className="h-12 mr-auto" />
+            <img src="./public/Img/carlogo4.png" alt="CarsNagpur Logo" className="h-12 mr-auto" />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
@@ -18,13 +27,13 @@ function Footer() {
                   { label: 'Contact us', href: '/contact' },
                   { label: 'Car insurance', href: '/insurance' },
                   { label: 'About us', href: '/about' },
-                  { label: 'Privacy policy', href: '/privacy' },
+                  // { label: 'Privacy policy', href: '/privacy' },
                   { label: 'Terms and conditions', href: '/terms' },
                   { label: 'FAQ', href: '/faq' },
                   { label: 'Testimonials', href: '/testimonials' },
-                  { label: 'Blog', href: '/blog' },
-                  { label: 'CarsNagpur finance', href: '/finance' },
-                  { label: 'Explore new cars', href: '/new-cars' }
+                  // { label: 'Blog', href: '/blog' },
+                  { label: 'CarsNagpur finance', href: '/financing' },
+                  { label: 'Explore new cars', href: '/new-car' }
                 ].map((item, index) => (
                   <li key={index}>
                     <a href={item.href} className="hover:text-blue-600">{item.label}</a>
@@ -38,8 +47,8 @@ function Footer() {
               <ul className="space-y-2">
                 {[
                   { label: 'Check challan', href: '/challan' },
-                  { label: 'Sell used car', href: '/sell-used-car' },
-                  { label: 'Used car valuation', href: '/used-car-valuation' }
+                  { label: 'Sell used car', href: '/usedcars' },
+                  // { label: 'Used car valuation', href: '/used-car-valuation' }
                 ].map((item, index) => (
                   <li key={index}>
                     <a href={item.href} className="hover:text-blue-600">{item.label}</a>
@@ -79,21 +88,13 @@ function Footer() {
             </div>
           </div>
 
-          {/* Navbar added below the terms and conditions part */}
-          <nav className="border-t border-gray-200 pt-8 mb-8">
-            <ul className="flex flex-wrap justify-center space-x-6 text-sm">
-              <li><a href="/" className="text-gray-600 hover:text-blue-600">Home</a></li>
-              <li><a href="/buy-car" className="text-gray-600 hover:text-blue-600">Buy Car</a></li>
-              <li><a href="/sell-car" className="text-gray-600 hover:text-blue-600">Sell Car</a></li>
-              <li><a href="/car-loan" className="text-gray-600 hover:text-blue-600">Car Loan</a></li>
-              <li><a href="/car-insurance" className="text-gray-600 hover:text-blue-600">Car Insurance</a></li>
-              <li><a href="/about" className="text-gray-600 hover:text-blue-600">About Us</a></li>
-              <li><a href="/contact" className="text-gray-600 hover:text-blue-600">Contact</a></li>
-            </ul>
-          </nav>
-
-          <div className="text-center text-sm text-gray-500">
-            © 2024 CarsNagpur. All rights reserved.
+          <div className="text-center text-sm text-gray-900">
+            © 2024 CarsNagpur.
+            <a href="https://www.pskitservices.com/">
+              <b>
+                @ A project of PSK TECHNOLOGIES PVT. LTD.
+              </b>
+            </a>
           </div>
         </div>
       </footer>

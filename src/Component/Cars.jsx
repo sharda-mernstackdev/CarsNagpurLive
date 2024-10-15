@@ -18,7 +18,7 @@ function Cars({
   const [click, setClick] = useState(true);
 
   return (
-    <div className="w-[350px] h-[420px] bg-white rounded-lg shadow-md overflow-hidden m-2"> {/* Reduced margin */}
+    <div className="w-[300px] h-[420px] bg-white rounded-lg shadow-md overflow-hidden m-3">
       <div className="relative">
         <img
           src="/src/assets/tata.jpg"

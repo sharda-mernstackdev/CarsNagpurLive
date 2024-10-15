@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Cars from "./Cars";
+import AllCars from "./AllCars";
 
 function UsedCars({ onFilterChange }) {
   const [budget, setBudget] = useState([150000, 2500000]);
@@ -35,16 +36,11 @@ function UsedCars({ onFilterChange }) {
   };
 
   return (
-    <div className="container mt-10">
-      <div className="grid grid-cols-12 gap-4">
+    <div className="container mx-auto mt-10">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 ">
         {/* Left side (Filter section) */}
         <div
-          className="bg-white rounded-lg shadow-md p-4 col-span-12 md:col-span-3 border-double border-4 border-gray-500"
-          style={{
-            position: "sticky", // Makes the element sticky
-            top: "20px", // Distance from the top of the viewport
-            height: "fit-content", // Ensures the content height doesn't stretch the container
-          }}
+          className="bg-white rounded-lg shadow-md p-4 col-span-1 lg:sticky lg:top-4 h-fit"
         >
           <h2 className="text-lg font-semibold mb-4">Filters</h2>
           <div className="mb-6">
@@ -86,7 +82,7 @@ function UsedCars({ onFilterChange }) {
         </div>
 
         {/* Right side (Cars display section) */}
-        <div className="col-span-12 md:col-span-9 border-double border-4 border-gray-500 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+        <div className="col-span-1 lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {(() => {
             const carsArray = [];
             for (let index = 0; index < 21; index++) {
