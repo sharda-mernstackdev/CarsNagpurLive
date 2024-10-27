@@ -251,8 +251,6 @@ function DealerShip() {
   </div>
 </div>
 
-
-      
       {/* For Your Further Research */}
       <section className="p-6 bg-gray-50 rounded-lg shadow-lg">
         <h2 className="text-xl font-semibold mb-6">For Your Further Research</h2>
