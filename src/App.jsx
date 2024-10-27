@@ -34,6 +34,8 @@ import { Echallan } from './Component/Echallan'
 import { Policy } from './Component/Policy'
 import Testimonial from './Component/Testimonial'
 import CarUpload from './Component/CarUpload'
+import Signup from './Component/Signup'
+import { ToastContainer } from 'react-toastify'
 
 
 function App() {
@@ -43,9 +45,14 @@ function App() {
    
     <Router >
       <Navbar/>
-     
+     <ToastContainer/>
       <Routes>
         <Route path="/login" element={<Login/>} />
+      </Routes>
+
+
+      <Routes>
+        <Route path="/signup" element={<Signup/>} />
       </Routes>
 
       <Routes>

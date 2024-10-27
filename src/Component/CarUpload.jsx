@@ -2,6 +2,8 @@
 
 import React, { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 const brands = ['Tata', 'Toyota', 'Honda', 'Ford', 'Hyundai', 'Mahindra', 'Nissan', 'Volkswagen', 'BMW', 'Audi', 'Other']
 const fuelTypes = ['Petrol', 'Diesel', 'Electric', 'Hybrid']
@@ -22,6 +24,10 @@ export  function CarUpload() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const fileInputRef = useRef(null)
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -30,19 +36,38 @@ export  function CarUpload() {
   }
 
   const handleImageChange = (e) => {
-    const files = Array.from(e.target.files)
-    const newImages = files.map((file) => ({
-      file,
-      preview: URL.createObjectURL(file),
-    }))
-    setImages((prev) => [...prev, ...newImages])
-    setErrors((prev) => ({ ...prev, images: '' }))
-  }
-
+    const files = Array.from(e.target.files);
+    
+    files.forEach((file) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        const base64String = reader.result;
+        
+        // Create a new image object with the base64 string
+        const newImage = {
+          file, // original file
+          preview: URL.createObjectURL(file), // for preview purposes
+          base64: base64String, // base64 encoded image
+        };
+        
+        // Update the state with the new image
+        setImages((prev) => [...prev, newImage]);
+      };
+      
+      reader.onerror = (error) => {
+        console.error('Error converting image to base64:', error);
+        setErrors((prev) => ({ ...prev, images: 'Error processing image' }));
+      };
+    });
+  
+    setErrors((prev) => ({ ...prev, images: '' }));
+  };
+  
   const removeImage = (index) => {
-    setImages((prev) => prev.filter((_, i) => i !== index))
-  }
-
+    setImages((prev) => prev.filter((_, i) => i !== index));
+  };
+  
   const validateForm = () => {
     const newErrors = {}
     if (!formData.carName.trim()) newErrors.carName = 'Car name is required'
@@ -57,24 +82,52 @@ export  function CarUpload() {
     return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    if (!validateForm()) return
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault()
+  //   if (!validateForm()) return
 
-    setIsSubmitting(true)
+  //   setIsSubmitting(true)
+  //   try {
+  //     // Simulating API call
+  //     await new Promise((resolve) => setTimeout(resolve, 2000))
+  //     console.log('Form submitted:', formData)
+  //     console.log('Images:', images)
+  //     setIsSubmitted(true)
+  //   } catch (err) {
+  //     console.error('Error submitting form:', err)
+  //     setErrors((prev) => ({ ...prev, submit: 'Failed to submit form. Please try again.' }))
+  //   } finally {
+  //     setIsSubmitting(false)
+  //   }
+  // }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError('');
+
     try {
-      // Simulating API call
-      await new Promise((resolve) => setTimeout(resolve, 2000))
-      console.log('Form submitted:', formData)
-      console.log('Images:', images)
-      setIsSubmitted(true)
+      const response = await fetch('/api/cars/cars', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        toast.success(data.message);
+        navigate('/usedcars');
+      } else {
+        toast.error(data.message || 'car upload failed');
+      }
     } catch (err) {
-      console.error('Error submitting form:', err)
-      setErrors((prev) => ({ ...prev, submit: 'Failed to submit form. Please try again.' }))
+      toast.error('Something went wrong. Please try again.');
     } finally {
-      setIsSubmitting(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   const nextStep = () => {
     if (step < 6) setStep(step + 1)

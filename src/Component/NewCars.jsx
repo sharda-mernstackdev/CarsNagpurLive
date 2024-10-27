@@ -5,11 +5,11 @@ import { ChevronLeft, ChevronRight, Search, Star, Car, Fuel, Users, X } from 'lu
 import { motion, AnimatePresence } from 'framer-motion'
 
 const carouselItems = [
-  {
-    id: 1,
-    title: "Unlock your dream ride!",
-    image: "https://i.pinimg.com/564x/ca/fe/8a/cafe8ae0da4cb351639d840879fae263.jpg",
-  },
+  // {
+  //   id: 1,
+  //   title: "Unlock your dream ride!",
+  //   image: "https://i.pinimg.com/564x/ca/fe/8a/cafe8ae0da4cb351639d840879fae263.jpg",
+  // },
   {
     id: 2,
     title: "Find your perfect match!",
@@ -303,65 +303,81 @@ function NewCars() {
         )}
       </AnimatePresence>
 
-      <div className="relative h-screen overflow-hidden">
-        {carouselItems.map((item, index) => (
-          <div
-            key={item.id}
-            className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1000 ${
-              index === currentSlide ? 'opacity-100' : 'opacity-0'
-            }`}
-          >
-            <img src={item.image} alt={item.title} className="object-cover w-full h-full" />
-            <div className="absolute inset-0 bg-black bg-opacity-50" />
-            <div className="absolute inset-0 flex flex-col justify-center items-center text-white p-4">
-              <h1 className="text-4xl md:text-6xl font-bold mb-8 text-center">{item.title}</h1>
-              <div className="w-full max-w-3xl mb-8">
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="Explore by brand, model or budget"
-                    className="w-full py-3 px-4 pr-12 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                  <button className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 bg-blue-500 rounded-full">
-                    <Search className="w-5 h-5 text-white" />
-                  </button>
-                </div>
-              </div>
-              <div className="text-center mb-8">
-                <h2 className="text-2xl font-semibold mb-4">Browse cars by</h2>
-                <div className="flex flex-wrap justify-center gap-4">
-                  {[
-                    { icon: Star, text: 'Brands' },
-                    { icon: Car, text: 'Body Type' },
-                    { icon: Fuel, text: 'Fuel Type' },
-                    { icon: Users, text: 'Seating Capacity' },
-                  ].map((button, index) => (
-                    <button
-                      key={index}
-                      className="flex items-center px-4 py-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-colors"
-                    >
-                      {React.createElement(button.icon, { className: 'w-5 h-5 mr-2' })}
-                      {button.text}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
+      <div className="relative h-[330px] sm:h-[400px] md:h-[500px] lg:h-[600px]  overflow-hidden">
+  {carouselItems.map((item, index) => (
+    <div
+      key={item.id}
+      className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1000 ${
+        index === currentSlide ? 'opacity-100' : 'opacity-0'
+      }`}
+    >
+      <img src={item.image} alt={item.title} className="object-cover w-full h-full" />
+      
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 bg-black bg-opacity-50" />
+      
+      {/* Carousel content */}
+      <div className="absolute inset-0 flex flex-col justify-center items-center text-white p-4">
+        {/* Carousel Title */}
+        <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-8 text-center">
+          {item.title}
+        </h1>
+        
+        {/* Search Input */}
+        <div className="w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl mb-6 md:mb-8">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Explore by brand, model or budget"
+              className="w-full py-2 sm:py-3 px-4 pr-12 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 bg-blue-500 rounded-full hover:bg-blue-600 transition-colors">
+              <Search className="w-5 h-5 text-white" />
+            </button>
           </div>
-        ))}
-        <button
-          onClick={prevSlide}
-          className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full hover:bg-opacity-75 transition-colors"
-        >
-          <ChevronLeft className="w-6 h-6 text-gray-800" />
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full hover:bg-opacity-75 transition-colors"
-        >
-          <ChevronRight className="w-6 h-6 text-gray-800" />
-        </button>
+        </div>
+
+        {/* Browse Section */}
+        <div className="text-center mb-6 md:mb-8">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">Browse cars by</h2>
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
+            {[
+              { icon: Star, text: 'Brands' },
+              { icon: Car, text: 'Body Type' },
+              { icon: Fuel, text: 'Fuel Type' },
+              { icon: Users, text: 'Seating Capacity' },
+            ].map((button, index) => (
+              <button
+                key={index}
+                className="flex items-center px-3 py-1 sm:px-4 sm:py-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-colors"
+              >
+                {React.createElement(button.icon, { className: 'w-4 h-4 sm:w-5 sm:h-5 mr-2' })}
+                {button.text}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
+    </div>
+  ))}
+
+  {/* Previous Button */}
+  <button
+    onClick={prevSlide}
+    className="absolute top-1/2 left-2 sm:left-4 transform -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full hover:bg-opacity-75 transition-colors"
+  >
+    <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-gray-800" />
+  </button>
+
+  {/* Next Button */}
+  <button
+    onClick={nextSlide}
+    className="absolute top-1/2 right-2 sm:right-4 transform -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full hover:bg-opacity-75 transition-colors"
+  >
+    <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-gray-800" />
+  </button>
+</div>
+
    
       <section className="w-full py-12 md:py-24 lg:py-32 bg-slate-100">
         <div className="container mx-auto px-4 md:px-6">

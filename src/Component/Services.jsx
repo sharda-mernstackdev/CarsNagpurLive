@@ -80,12 +80,13 @@ export  function Services() {
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Hero Section with Carousel and Search Bar */}
-      <section className="relative h-[600px] overflow-hidden">
+      <section className="relative h-[300px] md:h-[600px] overflow-hidden">
+
         <AnimatePresence initial={false}>
           <motion.img
             key={currentSlide}
             src={carouselImages[currentSlide]}
-            alt={`Slide ${currentSlide + 1}`}
+            alt={ `${currentSlide + 1}`}
             className="absolute inset-0 w-full h-full object-content"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -272,4 +273,5 @@ export  function Services() {
       </section>
     </div>
   )
-}export default Services
+}
+export default Services

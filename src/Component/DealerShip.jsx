@@ -4,6 +4,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 import { Award, Truck, Tag, BarChart2 } from 'lucide-react'
+import dealer from '../../public/Img/delership.png'
 
 function DealerShip() {
   // Arrays for cities and cars
@@ -104,7 +105,7 @@ function DealerShip() {
       {/* Background image with overlay */}
       <div className="relative h-[630px]">
         <img
-          src="./public/Img/delership.png" // Background image
+          src={dealer} // Background image
           alt="Car background"
           className="w-full h-[630px] object-cover"
         />
@@ -251,6 +252,8 @@ function DealerShip() {
   </div>
 </div>
 
+
+      
       {/* For Your Further Research */}
       <section className="p-6 bg-gray-50 rounded-lg shadow-lg">
         <h2 className="text-xl font-semibold mb-6">For Your Further Research</h2>

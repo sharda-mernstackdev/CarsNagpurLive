@@ -7,9 +7,9 @@ function Footer() {
       <footer
         className="bg-gray-200 text-gray-800 py-8 relative"
         style={{
-          backgroundImage: "url('./public/Img/footerbg.png')", // Replace with your background image path
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          // backgroundImage: "url('./public/Img/footerbg.png')", // Replace with your background image path
+          // backgroundSize: 'cover',
+          // backgroundPosition: 'center',
         }}
       >
         
