@@ -174,4 +174,6 @@ export function FAQ() {
   );
 }
 
+
+<h1>Sanjana Kashimkar Ashwini Thakre Sharda Waghmare </h1>
 export default FAQ;
