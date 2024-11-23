@@ -18,7 +18,7 @@ export function About() {
       <div className="bg-gray-900 bg-cover h-[500px] text-white "style={{ backgroundImage: "url('https://images.pexels.com/photos/164634/pexels-photo-164634.jpeg')" }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 ml-[40px]">
           <h1 className="text-4xl font-bold  ">About CarsNagpur</h1>
-          <p className="text-xl mb-8">Revolutionizing the way Nagpur buys and sells cars</p>
+          <p className="text-xl mb-8">Revolutionizing the way Nagpur buys and sells cars hjkiuyredg</p>
           <Button className="bg-white text-orange-600 hover:bg-orange-50">Learn More</Button>
         </div>
       </div>
