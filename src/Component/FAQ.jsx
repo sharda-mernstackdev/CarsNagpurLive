@@ -164,7 +164,6 @@ export function FAQ() {
         ))}
 
         <div className="mt-12 text-center">
-          <h1>ashwini sanjana</h1>
           <p className="text-gray-600 mb-4">Can't find what you're looking for?</p>
           <button className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
             Contact CarsNagpur Support
@@ -174,7 +173,5 @@ export function FAQ() {
     </div>
   );
 }
-
-
-<h1>Sanjana Kashimkar Ashwini Thakre Sharda Waghmare </h1>
+z
 export default FAQ;
