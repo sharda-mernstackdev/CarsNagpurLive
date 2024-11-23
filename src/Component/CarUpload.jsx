@@ -1,15 +1,13 @@
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
+const brands = ['Tata', 'Toyota', 'Honda', 'Ford', 'Hyundai', 'Mahindra', 'Nissan', 'Volkswagen', 'BMW', 'Audi', 'Other'];
+const fuelTypes = ['Petrol', 'Diesel', 'Electric', 'Hybrid'];
 
-import React, { useState, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
-
-const brands = ['Tata', 'Toyota', 'Honda', 'Ford', 'Hyundai', 'Mahindra', 'Nissan', 'Volkswagen', 'BMW', 'Audi', 'Other']
-const fuelTypes = ['Petrol', 'Diesel', 'Electric', 'Hybrid']
-
-export  function CarUpload() {
-  const [step, setStep] = useState(1)
+export function CarUpload() {
+  const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     carName: '',
     brand: '',
@@ -17,121 +15,113 @@ export  function CarUpload() {
     fuelType: '',
     owner: '',
     price: 0,
+    images: [],
     description: '',
-  })
-  const [images, setImages] = useState([])
-  const [errors, setErrors] = useState({})
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const fileInputRef = useRef(null)
-  const [error, setError] = useState('');
+  });
+  const [images, setImages] = useState([]);
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const fileInputRef = useRef(null);
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
-
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-    setErrors((prev) => ({ ...prev, [name]: '' }))
-  }
-
-  const handleImageChange = (e) => {
-    const files = Array.from(e.target.files);
-    
-    files.forEach((file) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onloadend = () => {
-        const base64String = reader.result;
-        
-        // Create a new image object with the base64 string
-        const newImage = {
-          file, // original file
-          preview: URL.createObjectURL(file), // for preview purposes
-          base64: base64String, // base64 encoded image
-        };
-        
-        // Update the state with the new image
-        setImages((prev) => [...prev, newImage]);
-      };
-      
-      reader.onerror = (error) => {
-        console.error('Error converting image to base64:', error);
-        setErrors((prev) => ({ ...prev, images: 'Error processing image' }));
-      };
-    });
-  
-    setErrors((prev) => ({ ...prev, images: '' }));
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: '' }));
   };
-  
+
+  const handleImageChange = async (e) => {
+    const files = Array.from(e.target.files);
+
+    const updatedImages = await Promise.all(
+      files.map(async (file) => {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', 'car_product');
+        formData.append('cloud_name', 'dbfl9lbvw');
+
+        try {
+          const response = await fetch`(https://api.cloudinary.com/v1_1/dbfl9lbvw/image/upload, {
+            method: 'POST',
+            body: formData,
+          })`;
+          const data = await response.json();
+          if (data.secure_url) {
+            return { file, preview: URL.createObjectURL(file), cloudinaryUrl: data.secure_url };
+          } else {
+            throw new Error('Upload failed');
+          }
+        } catch (error) {
+          console.error('Error uploading image to Cloudinary:', error);
+          setErrors((prev) => ({ ...prev, images: 'Error uploading image' }));
+          return null;
+        }
+      })
+    );
+
+    setImages((prev) => [...prev, ...updatedImages.filter((img) => img !== null)]);
+  };
+
   const removeImage = (index) => {
     setImages((prev) => prev.filter((_, i) => i !== index));
   };
-  
+
   const validateForm = () => {
-    const newErrors = {}
-    if (!formData.carName.trim()) newErrors.carName = 'Car name is required'
-    if (!formData.brand) newErrors.brand = 'Brand is required'
-    if (formData.kilometer < 0) newErrors.kilometer = 'Kilometer must be positive'
-    if (!formData.fuelType) newErrors.fuelType = 'Fuel type is required'
-    if (!formData.owner.trim()) newErrors.owner = 'Owner name is required'
-    if (formData.price <= 0) newErrors.price = 'Price must be greater than 0'
-    if (formData.description.length < 10) newErrors.description = 'Description must be at least 10 characters'
-    if (images.length === 0) newErrors.images = 'At least one image is required'
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault()
-  //   if (!validateForm()) return
-
-  //   setIsSubmitting(true)
-  //   try {
-  //     // Simulating API call
-  //     await new Promise((resolve) => setTimeout(resolve, 2000))
-  //     console.log('Form submitted:', formData)
-  //     console.log('Images:', images)
-  //     setIsSubmitted(true)
-  //   } catch (err) {
-  //     console.error('Error submitting form:', err)
-  //     setErrors((prev) => ({ ...prev, submit: 'Failed to submit form. Please try again.' }))
-  //   } finally {
-  //     setIsSubmitting(false)
-  //   }
-  // }
+    const newErrors = {};
+    if (!formData.carName.trim()) newErrors.carName = 'Car name is required';
+    if (!formData.brand) newErrors.brand = 'Brand is required';
+    if (formData.kilometer < 0) newErrors.kilometer = 'Kilometer must be positive';
+    if (!formData.fuelType) newErrors.fuelType = 'Fuel type is required';
+    if (!formData.owner.trim()) newErrors.owner = 'Owner name is required';
+    if (formData.price <= 0) newErrors.price = 'Price must be greater than 0';
+    if (formData.description.length < 10) newErrors.description = 'Description must be at least 10 characters';
+    if (images.length === 0) newErrors.images = 'At least one image is required';
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    setError('');
-
+    // if (!validateForm()) return;
+  
+    setIsSubmitting(true);
+  
     try {
-      const response = await fetch('/api/cars/cars', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+      const form = new FormData();
+      Object.keys(formData).forEach((key) => {
+        if (key === 'images') {
+          images.forEach((image) => form.append('images', image.file));
+        } else {
+          form.append(key, formData[key]);
+        }
       });
-
+  
+      const response = await fetch('/api/cars/newCar', {
+        method: 'POST',
+        body: form,
+      });
+  
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.message || 'Car upload failed');
+      }
+  
       const data = await response.json();
       if (data.success) {
         toast.success(data.message);
         navigate('/usedcars');
-      } else {
-        toast.error(data.message || 'car upload failed');
       }
-    } catch (err) {
-      toast.error('Something went wrong. Please try again.');
+    } catch (error) {
+      toast.error(error.message);
     } finally {
-      setIsLoading(false);
+      setIsSubmitting(false);
     }
   };
-
+  
   const nextStep = () => {
-    if (step < 6) setStep(step + 1)
-  }
+    if (step < 6) setStep((prevStep) => prevStep + 1);
+  };
+  
 
   const prevStep = () => {
     if (step > 1) setStep(step - 1)
@@ -141,7 +131,7 @@ export  function CarUpload() {
     return (
       <div className="step-indicator">
         {[1, 2, 3, 4, 5, 6].map((s) => (
-          <div key={s} className={`step ${s <= step ? 'active' : ''}`}>
+          <div key={s} className={step `${s <= step ? 'active' : ''}`}>
             {s}
           </div>
         ))}
@@ -247,9 +237,10 @@ export  function CarUpload() {
       case 4:
         return (
           <div className="form-group">
-            <label>Car Images</label>
+            <label htmlFor='images'>Car Images</label>
             <div
               className="dropzone"
+              htmlFor='imagesUpload'
               onClick={() => fileInputRef.current.click()}
               onDragOver={(e) => e.preventDefault()}
               onDrop={(e) => {
@@ -260,6 +251,7 @@ export  function CarUpload() {
               <input
                 type="file"
                 ref={fileInputRef}
+                id='imagesUpload'
                 onChange={handleImageChange}
                 accept="image/*"
                 multiple
@@ -374,7 +366,7 @@ export  function CarUpload() {
     }
   }
 
-  if (isSubmitted) {
+  if (isSubmitting) {
     return (
       <div className="container">
         <div className="hero">
@@ -393,7 +385,7 @@ export  function CarUpload() {
                   description: '',
                 })
                 setImages([])
-                setIsSubmitted(false)
+                setIsSubmitting(false)
                 setStep(1)
               }}
               className="button primary"
